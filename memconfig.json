@@ -5,10 +5,44 @@
         "name": "Root",
         "actions": [
           {
+            "name": "endpoint",
+            "type": "String",
+            "hints": {
+              "hidden": true
+            },
+            "params": [
+              {
+                "name": "method",
+                "type": "String"
+              },
+              {
+                "name": "body",
+                "type": "String"
+              },
+              {
+                "name": "path",
+                "type": "String"
+              },
+              {
+                "name": "query",
+                "type": "String"
+              },
+              {
+                "name": "headers",
+                "type": "String"
+              }
+            ]
+          },
+          {
             "name": "getTask",
             "description": "Get Task",
             "type": "Void",
-            "params": [{ "name": "id", "type": "Int" }]
+            "params": [
+              {
+                "name": "id",
+                "type": "Int"
+              }
+            ]
           },
           {
             "name": "getAllTask",
@@ -58,11 +92,18 @@
             "name": "deleteTask",
             "description": "Remove Task",
             "type": "Void",
-            "params": [{ "name": "id", "type": "Int" }]
+            "params": [
+              {
+                "name": "id",
+                "type": "Int"
+              }
+            ]
           }
         ]
       }
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "html": "html:"
+  }
 }
