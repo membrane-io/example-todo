@@ -5,7 +5,7 @@
         "name": "Root",
         "fields": [
           {
-            "name": "TaskOne",
+            "name": "one",
             "params": [
               {
                 "name": "id",
@@ -15,7 +15,7 @@
             "type": "Task"
           },
           {
-            "name": "TaskCollection",
+            "name": "page",
             "type": "TaskPage"
           }
         ],
@@ -50,14 +50,10 @@
             ]
           },
           {
-            "name": "addTask",
+            "name": "add",
             "description": "Create Task",
-            "type": "Void",
+            "type": "Int",
             "params": [
-              {
-                "name": "id",
-                "type": "Int"
-              },
               {
                 "name": "title",
                 "type": "String"
@@ -65,36 +61,6 @@
               {
                 "name": "dueDate",
                 "type": "String"
-              }
-            ]
-          },
-          {
-            "name": "editTask",
-            "description": "Update Task",
-            "type": "Void",
-            "params": [
-              {
-                "name": "id",
-                "type": "Int"
-              },
-              {
-                "name": "title",
-                "type": "String"
-              },
-              {
-                "name": "dueDate",
-                "type": "String"
-              }
-            ]
-          },
-          {
-            "name": "deleteTask",
-            "description": "Remove Task",
-            "type": "Void",
-            "params": [
-              {
-                "name": "id",
-                "type": "Int"
               }
             ]
           }
@@ -107,6 +73,11 @@
             "name": "items",
             "type": "List",
             "ofType": "Task"
+          },
+          {
+            "name": "next",
+            "type": "Ref",
+            "ofType": "TaskPage"
           }
         ]
       },
@@ -119,17 +90,38 @@
           },
           {
             "name": "title",
-            "type": "String"
+            "type": "String",
+            "hints": { "primary": true }
           },
           {
             "name": "dueDate",
-            "type": "String"
+            "type": "String",
+            "hints": { "primary": true }
+          }
+        ],
+        "actions": [
+          {
+            "name": "update",
+            "description": "Update Task",
+            "type": "Void",
+            "params": [
+              {
+                "name": "title",
+                "type": "String"
+              },
+              {
+                "name": "dueDate",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "name": "remove",
+            "description": "Remove Task",
+            "type": "Void"
           }
         ]
       }
     ]
-  },
-  "dependencies": {
-    "html": "html:"
   }
 }
