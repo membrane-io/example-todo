@@ -15,78 +15,17 @@
   },
   "imports": [
     {
-      "name": "sys-clock",
+      "name": "sys-process",
       "schema": {
         "types": [
           {
             "name": "Root",
             "description": "",
-            "actions": [
-              {
-                "name": "sleep",
-                "description": "",
-                "type": "Void",
-                "params": [
-                  {
-                    "name": "key",
-                    "type": "String"
-                  },
-                  {
-                    "name": "seconds",
-                    "type": "Float"
-                  }
-                ],
-                "hints": {}
-              }
-            ],
-            "fields": [],
-            "events": [
-              {
-                "name": "timer",
-                "description": "",
-                "type": "TimerEvent",
-                "params": [
-                  {
-                    "name": "key",
-                    "type": "String"
-                  },
-                  {
-                    "name": "spec",
-                    "type": "String"
-                  },
-                  {
-                    "name": "maxCount",
-                    "type": "Int"
-                  }
-                ],
-                "hints": {}
-              },
-              {
-                "name": "timerAt",
-                "description": "",
-                "type": "TimerEvent",
-                "params": [
-                  {
-                    "name": "key",
-                    "type": "String"
-                  },
-                  {
-                    "name": "seconds",
-                    "type": "String"
-                  }
-                ],
-                "hints": {}
-              }
-            ]
-          },
-          {
-            "name": "TimerEvent",
-            "description": "",
             "actions": [],
             "fields": [
               {
-                "name": "id",
-                "description": "",
+                "name": "endpointUrl",
+                "description": "Gets the program's own endpoint URL",
                 "type": "String",
                 "params": [],
                 "hints": {}
@@ -256,17 +195,78 @@
       }
     },
     {
-      "name": "sys-process",
+      "name": "sys-clock",
       "schema": {
         "types": [
           {
             "name": "Root",
             "description": "",
+            "actions": [
+              {
+                "name": "sleep",
+                "description": "",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "key",
+                    "type": "String"
+                  },
+                  {
+                    "name": "seconds",
+                    "type": "Float"
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [],
+            "events": [
+              {
+                "name": "timer",
+                "description": "",
+                "type": "TimerEvent",
+                "params": [
+                  {
+                    "name": "key",
+                    "type": "String"
+                  },
+                  {
+                    "name": "spec",
+                    "type": "String"
+                  },
+                  {
+                    "name": "maxCount",
+                    "type": "Int"
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "timerAt",
+                "description": "",
+                "type": "TimerEvent",
+                "params": [
+                  {
+                    "name": "key",
+                    "type": "String"
+                  },
+                  {
+                    "name": "seconds",
+                    "type": "String"
+                  }
+                ],
+                "hints": {}
+              }
+            ]
+          },
+          {
+            "name": "TimerEvent",
+            "description": "",
             "actions": [],
             "fields": [
               {
-                "name": "endpointUrl",
-                "description": "Gets the program's own endpoint URL",
+                "name": "id",
+                "description": "",
                 "type": "String",
                 "params": [],
                 "hints": {}

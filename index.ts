@@ -3,15 +3,16 @@
 // `state` is an object that persist across program updates. Store data here.
 import { nodes, root, state } from "membrane";
 
-state.tasks = [];
+state.tasks = state.tasks ?? [];
 
-export async function getAllTask({ args }) {
-  return state.tasks;
-}
-
-export async function getTask({ args }) {
-  return state.tasks.find((task) => task.id === args.id);
-}
+export const Root = {
+  TaskOne: ({ args: { id } }) => state.tasks.find((task) => task.id === id),
+  TaskCollection: () => {
+    return {
+      items: state.tasks,
+    }
+  }
+};
 
 export async function addTask({ args }) {
   state.tasks.push({
@@ -32,12 +33,6 @@ export async function deleteTask({ args }) {
   delete state.tasks[index];
 }
 
-export async function endpoint({ args: { path, query, headers, body } }) {
-  return await nodes.html.formFor({ action: "root.addTask" }).$invoke();
-}
-
-// interface Task {
-//   id: number,
-//   title: string,
-//   dueDate: string,
+// export async function endpoint({ args: { path, query, headers, body } }) {
+//   return await nodes.html.formFor({ action: "root.addTask" }).$invoke();
 // }

@@ -3,6 +3,22 @@
     "types": [
       {
         "name": "Root",
+        "fields": [
+          {
+            "name": "TaskOne",
+            "params": [
+              {
+                "name": "id",
+                "type": "Int"
+              }
+            ],
+            "type": "Task"
+          },
+          {
+            "name": "TaskCollection",
+            "type": "TaskPage"
+          }
+        ],
         "actions": [
           {
             "name": "endpoint",
@@ -32,23 +48,6 @@
                 "type": "String"
               }
             ]
-          },
-          {
-            "name": "getTask",
-            "description": "Get Task",
-            "type": "Void",
-            "params": [
-              {
-                "name": "id",
-                "type": "Int"
-              }
-            ]
-          },
-          {
-            "name": "getAllTask",
-            "description": "Get All Task",
-            "type": "Void",
-            "params": []
           },
           {
             "name": "addTask",
@@ -98,6 +97,33 @@
                 "type": "Int"
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "TaskPage",
+        "fields": [
+          {
+            "name": "items",
+            "type": "List",
+            "ofType": "Task"
+          }
+        ]
+      },
+      {
+        "name": "Task",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Int"
+          },
+          {
+            "name": "title",
+            "type": "String"
+          },
+          {
+            "name": "dueDate",
+            "type": "String"
           }
         ]
       }
