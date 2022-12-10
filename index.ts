@@ -55,6 +55,14 @@ export const Task = {
   },
 };
 
-// export async function endpoint({ args: { path, query, headers, body } }) {
-//   return await nodes.html.formFor({ action: "root.addTask" }).$invoke();
-// }
+export async function endpoint({ args: { path, method, body } }) {
+  if (path === "/new" && method === "POST") {
+    let params = new URLSearchParams(body);
+    add({
+      args: { title: params.get("title"), dueDate: params.get("dueDate") },
+    });
+  }
+  return await nodes.html
+    .formFor({ action: "root.add", path: "new", method: "POST" })
+    .$invoke();
+}

@@ -91,12 +91,16 @@
           {
             "name": "title",
             "type": "String",
-            "hints": { "primary": true }
+            "hints": {
+              "primary": true
+            }
           },
           {
             "name": "dueDate",
             "type": "String",
-            "hints": { "primary": true }
+            "hints": {
+              "primary": true
+            }
           }
         ],
         "actions": [
@@ -123,5 +127,8 @@
         ]
       }
     ]
+  },
+  "dependencies": {
+    "html": "html:"
   }
 }
