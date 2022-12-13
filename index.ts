@@ -24,6 +24,11 @@ export async function add({ args }) {
   return id;
 }
 
+export async function removeAll() {
+  state.tasks = []
+  return 'Done';
+}
+
 export const Task = {
   // The value of this field determines "the identity" of this node.
   //
@@ -55,14 +60,12 @@ export const Task = {
   },
 };
 
-export async function endpoint({ args: { path, method, body } }) {
+export function endpoint({ args: { path, method, body } }) {
   if (path === "/new" && method === "POST") {
     let params = new URLSearchParams(body);
     add({
       args: { title: params.get("title"), dueDate: params.get("dueDate") },
     });
   }
-  return await nodes.html
-    .formFor({ action: "root.add", path: "new", method: "POST" })
-    .$invoke();
+  return nodes.html.form({ action: "root.add", path: "new", method: "POST" }).$get();
 }
