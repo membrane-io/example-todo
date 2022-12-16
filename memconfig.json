@@ -135,6 +135,7 @@
     ]
   },
   "dependencies": {
-    "html": "html:"
+    "html": "html:",
+    "endpoint": "sys-process:endpointUrl"
   }
 }

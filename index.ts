@@ -25,8 +25,8 @@ export async function add({ args }) {
 }
 
 export async function removeAll() {
-  state.tasks = []
-  return 'Done';
+  state.tasks = [];
+  return "Done";
 }
 
 export const Task = {
@@ -60,12 +60,61 @@ export const Task = {
   },
 };
 
-export function endpoint({ args: { path, method, body } }) {
-  if (path === "/new" && method === "POST") {
-    let params = new URLSearchParams(body);
-    add({
-      args: { title: params.get("title"), dueDate: params.get("dueDate") },
-    });
+export async function endpoint({ args: { path, method, body, query } }) {
+  const queryParams = new URLSearchParams(query);
+  const bodyParams = new URLSearchParams(body);
+  const endpointUrl = await nodes.endpoint.$get();
+
+  // Form of create task
+  if (path === "/add") {
+    if (method === "POST") {
+      add({
+        args: {
+          title: bodyParams.get("title"),
+          dueDate: bodyParams.get("dueDate"),
+        },
+      });
+    }
+    // ?gref=root.add
+    return nodes.html
+      .form({
+        action: "root.add",
+        path: "add",
+        method: "POST",
+        title: "Add",
+      })
+      .$get();
   }
-  return nodes.html.form({ action: "root.add", path: "new", method: "POST" }).$get();
+
+  // Form of create task
+  if (path === "/edit") {
+    // update post
+    if (method === "POST") {
+      root
+        .one({ id: parseInt(bodyParams.get("id") as string) })
+        .update({
+          title: bodyParams.get("title") as string,
+          dueDate: bodyParams.get("dueDate") as string,
+        })
+        .$invoke();
+    }
+    // ?gref=root.add
+    return nodes.html
+      .form({
+        action: "todo:one(id:1).update(dueDate:2022-02-02,title:demo)",
+        path: "edit",
+        method: "POST",
+        title: "Update",
+      })
+      .$get();
+  }
+
+  // Receive POST data for new Task
+  // Get one task with tasks?id=1
+  if (path === "/task") {
+    const id = queryParams.get("id");
+    return nodes.html
+      .render({ field: "todo:tasks.one(id:5)", url: endpointUrl })
+      .$get();
+  }
 }
