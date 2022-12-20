@@ -4,7 +4,7 @@
 import { nodes, root, state } from "membrane";
 
 state.tasks = state.tasks ?? [];
-state.nextId = 1;
+state.nextId = state.nextId ?? 1;
 
 export const Root = {
   one: ({ args: { id } }) => state.tasks.find((task) => task.id === id),
@@ -63,58 +63,21 @@ export const Task = {
 export async function endpoint({ args: { path, method, body, query } }) {
   const queryParams = new URLSearchParams(query);
   const bodyParams = new URLSearchParams(body);
-  const endpointUrl = await nodes.endpoint.$get();
 
   // Form of create task
   if (path === "/add") {
     if (method === "POST") {
       add({
-        args: {
-          title: bodyParams.get("title"),
-          dueDate: bodyParams.get("dueDate"),
-        },
+        args: { title: bodyParams.get("title"), dueDate: bodyParams.get("dueDate") },
       });
     }
-    // ?gref=root.add
-    return nodes.html
-      .form({
-        action: "root.add",
-        path: "add",
-        method: "POST",
-        title: "Add",
-      })
-      .$get();
-  }
-
-  // Form of create task
-  if (path === "/edit") {
-    // update post
-    if (method === "POST") {
-      root
-        .one({ id: parseInt(bodyParams.get("id") as string) })
-        .update({
-          title: bodyParams.get("title") as string,
-          dueDate: bodyParams.get("dueDate") as string,
-        })
-        .$invoke();
-    }
-    // ?gref=root.add
-    return nodes.html
-      .form({
-        action: "todo:one(id:1).update(dueDate:2022-02-02,title:demo)",
-        path: "edit",
-        method: "POST",
-        title: "Update",
-      })
-      .$get();
+    return nodes.html.form({ action: root.add, path: "add", method: "POST", title: "Add task" }).$get();
   }
 
   // Receive POST data for new Task
   // Get one task with tasks?id=1
   if (path === "/task") {
     const id = queryParams.get("id");
-    return nodes.html
-      .render({ field: "todo:tasks.one(id:5)", url: endpointUrl })
-      .$get();
+    return nodes.html.render({ field: root.one({ id }), query: "{ id, title, dueDate }" }).$get();
   }
 }
