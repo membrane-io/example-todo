@@ -41,27 +41,27 @@ Result:
 
 ## Actions
 
-Add Task\
+Add Task
 
-$~~~~$`mctl action "todo:add(title:'wake up', dueDate:'07:00')"`\
+$~~~~$`mctl action "todo:add(title:'wake up', dueDate:'07:00')"`
 
-Edit task\
+Edit task
 
-$~~~~$`mctl action "todo:one(id:1).update(dueDate:'08:00', title:'Wake up')`\
+$~~~~$`mctl action "todo:one(id:1).update(dueDate:'08:00', title:'Wake up')`
 
-Mark as completed\
+Mark as completed
 
 $~~~~$`mctl action "todo:one(id:1).completed"`
 
-Delete a task\
+Delete a task
 
-$~~~~$`mctl action "todo:one(id:1).remove"`\
+$~~~~$`mctl action "todo:one(id:1).remove"`
 
-Delete completed tasks\
+Delete completed tasks
 
-$~~~~$`mctl action "todo:deleteCompleted"`\
+$~~~~$`mctl action "todo:deleteCompleted"`
 
-Delete all tasks\
+Delete all tasks
 
 $~~~~$`mctl action "todo:deleteAllTasks"`
 
