@@ -52,7 +52,7 @@ $~~~~$`mctl action "todo:add(title:'wake up', dueDate:'07:00')"`\
 Delete completed tasks\
 $~~~~$`mctl action 'todo:deleteCompleted'`\
 Delete all tasks\
-    `mctl action 'todo:deleteAllTasks'`
+$~~~~$`mctl action 'todo:deleteAllTasks'`
 
 # Schema
 
