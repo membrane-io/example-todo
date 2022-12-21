@@ -21,37 +21,8 @@
         ],
         "actions": [
           {
-            "name": "endpoint",
-            "type": "String",
-            "hints": {
-              "hidden": true
-            },
-            "params": [
-              {
-                "name": "method",
-                "type": "String"
-              },
-              {
-                "name": "body",
-                "type": "String"
-              },
-              {
-                "name": "path",
-                "type": "String"
-              },
-              {
-                "name": "query",
-                "type": "String"
-              },
-              {
-                "name": "headers",
-                "type": "String"
-              }
-            ]
-          },
-          {
             "name": "add",
-            "description": "Create Task",
+            "description": "Add your new todo",
             "type": "Int",
             "params": [
               {
@@ -65,9 +36,15 @@
             ]
           },
           {
-            "name": "removeAll",
+            "name": "deleteCompleted",
+            "description": "Delete all tasks completed",
+            "type": "Void",
+            "params": []
+          },
+          {
+            "name": "deleteAllTasks",
             "description": "Delete all tasks",
-            "type": "String",
+            "type": "Void",
             "params": []
           }
         ]
@@ -107,6 +84,11 @@
             "hints": {
               "primary": true
             }
+          },
+          {
+            "name": "isCompleted",
+            "type": "Boolean",
+            "hints": {}
           }
         ],
         "actions": [
@@ -129,13 +111,15 @@
             "name": "remove",
             "description": "Remove Task",
             "type": "Void"
+          },
+          {
+            "name": "completed",
+            "description": "Marking task as completed",
+            "type": "Boolean"
           }
         ]
       }
     ]
   },
-  "dependencies": {
-    "html": "html:",
-    "endpoint": "sys-process:endpointUrl"
-  }
+  "dependencies": {}
 }

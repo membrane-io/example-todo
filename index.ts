@@ -14,21 +14,6 @@ export const Root = {
   }),
 };
 
-export async function add({ args }) {
-  const id = state.nextId++;
-  state.tasks.push({
-    id,
-    title: args.title,
-    dueDate: args.dueDate,
-  });
-  return id;
-}
-
-export async function removeAll() {
-  state.tasks = [];
-  return "Done";
-}
-
 export const Task = {
   // The value of this field determines "the identity" of this node.
   //
@@ -58,26 +43,31 @@ export const Task = {
     const index = state.tasks.findIndex((task) => task.id === id);
     state.tasks.splice(index, 1);
   },
+  completed({ self, args }) {
+    const { id } = self.$argsAt(root.one);
+    const result = state.tasks.find((task) => task.id === id);
+    result.isCompleted = !result.isCompleted;
+    return result.isCompleted;
+  },
 };
 
-export async function endpoint({ args: { path, method, body, query } }) {
-  const queryParams = new URLSearchParams(query);
-  const bodyParams = new URLSearchParams(body);
+export async function add({ args }) {
+  const id = state.nextId++;
+  state.tasks.push({
+    id,
+    title: args.title,
+    dueDate: args.dueDate,
+    isCompleted: false,
+  });
+  return id;
+}
 
-  // Form of create task
-  if (path === "/add") {
-    if (method === "POST") {
-      add({
-        args: { title: bodyParams.get("title"), dueDate: bodyParams.get("dueDate") },
-      });
-    }
-    return nodes.html.form({ action: root.add, path: "add", method: "POST", title: "Add task" }).$get();
-  }
+export async function deleteCompleted() {
+  state.tasks = state.tasks.filter((task) => {
+    return !task.isCompleted;
+  });
+}
 
-  // Receive POST data for new Task
-  // Get one task with tasks?id=1
-  if (path === "/task") {
-    const id = queryParams.get("id");
-    return nodes.html.render({ field: root.one({ id }), query: "{ id, title, dueDate }" }).$get();
-  }
+export async function deleteAllTasks() {
+  state.tasks = [];
 }
