@@ -13,8 +13,6 @@ An [Membrane.io](https://membrane.io/) program to manage your tasks lists.
 ## Queries
 Get one of tasks
 ```
-command
-
 mctl query "todo:one(id:8)" "{ id title dueDate }"
 
 Result:
