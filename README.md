@@ -40,19 +40,19 @@ Result:
 ```
 
 ## Actions
-Edit task
-    - `todo:one(id:1).update(dueDate:"08:00",title:"Wake up")`
-Delete task
-    - `todo:one(id:1).remove`
-Mask as completed
-    - `todo:one(id:1).completed`
+Edit task\
+    `todo:one(id:1).update(dueDate:"08:00",title:"Wake up")`
+Delete task\
+    `todo:one(id:1).remove`
+Mask as completed\
+    `todo:one(id:1).completed`
 
-Add Task
-    - `mctl action "todo:add(title:'wake up', dueDate:'07:00')"`
-Delete completed tasks
-    - `mctl action 'todo:deleteCompleted'`
-Delete all tasks
-    - `mctl action 'todo:deleteAllTasks'`
+Add Task\
+    `mctl action "todo:add(title:'wake up', dueDate:'07:00')"`
+Delete completed tasks\
+    `mctl action 'todo:deleteCompleted'`
+Delete all tasks\
+    `mctl action 'todo:deleteAllTasks'`
 
 # Schema
 
