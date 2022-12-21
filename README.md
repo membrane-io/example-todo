@@ -71,8 +71,8 @@ $~~~~$`mctl action "todo:deleteAllTasks"`
 ```javascript
 <Root>
     - Fields
-        one(id) -> <Task>
-        page() -> <TaskPage>
+        one(id) -> Ref <Task>
+        page() -> Ref <TaskPage>
     - Actions
         add(title, dueDate) -> Int
         deletedCompleted() -> void
