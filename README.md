@@ -44,7 +44,7 @@ Edit task\
 $~~~~$`mctl action "todo:one(id:1).update(dueDate:'08:00', title:'Wake up')`\
 Delete task\
 $~~~~$`mctl action "todo:one(id:1).remove"`\
-Mask as completed\
+Mark as completed\
 $~~~~$`mctl action "todo:one(id:1).completed"`
 
 Add Task\
