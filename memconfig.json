@@ -3,6 +3,7 @@
     "types": [
       {
         "name": "Root",
+        "description": "Create and manage a TO-DO list using Membrane",
         "fields": [
           {
             "name": "one",
