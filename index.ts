@@ -42,7 +42,7 @@ export const Task = {
     const { id } = self.$argsAt(root.one);
     const index = state.tasks.findIndex((task) => task.id === id);
     state.tasks.splice(index, 1);
-  },
+  }, 
   completed({ self, args }) {
     const { id } = self.$argsAt(root.one);
     const result = state.tasks.find((task) => task.id === id);
