@@ -40,7 +40,7 @@
                 "name": "dueDate",
                 "type": "String",
                 "description": "The due date of the new task",
-                "optional": true
+                "optional": false
               }
             ]
           },
