@@ -16,7 +16,7 @@
               }
             ],
             "type": "Task",
-            "description": "A single task"
+            "description": "A single task."
           },
           {
             "name": "page",
