@@ -16,12 +16,16 @@
               }
             ],
             "type": "Task",
-            "description": "A single task."
+            "description": "A single task"
           },
           {
             "name": "page",
             "type": "TaskPage",
             "description": "A page of tasks"
+          },
+          {
+            "name": "tests",
+            "type": "Tests"
           }
         ],
         "actions": [
@@ -138,6 +142,36 @@
           }
         ],
         "description": "A page of tasks"
+      },
+      {
+        "name": "Tests",
+        "actions": [
+          {
+            "name": "testCreateTask",
+            "type": "Boolean"
+          },
+          {
+            "name": "testDeleteAllTask",
+            "type": "Boolean"
+          },
+          {
+            "name": "testDeleteCompleted",
+            "type": "Boolean"
+          },
+          {
+            "name": "testUpdateTask",
+            "type": "Boolean"
+          },
+          {
+            "name": "testCompleteTask",
+            "type": "Boolean"
+          },
+          {
+            "name": "testDeleteTask",
+            "type": "Boolean"
+          }
+        ],
+        "fields": []
       }
     ]
   },

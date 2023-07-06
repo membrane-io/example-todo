@@ -12,6 +12,40 @@ export const Root = {
     items: state.tasks,
     next: null, // TODO!
   }),
+  tests: () => ({}),
+};
+
+export const Tests = {
+  testCreateTask: async () => {
+    const id = await root.add({ title: "Test Task", dueDate: "2000-01-01" });
+    if (typeof id === "number") {
+      return true;
+    }
+    return false;
+  },
+  testDeleteAllTask: async () => {
+    await root.deleteAllTasks();
+    return state.tasks.length === 0;
+  },
+  testDeleteCompleted: async () => {
+    await root.deleteCompleted();
+    return state.tasks.every((task) => !task.isCompleted);
+  },
+  testUpdateTask: async () => {
+    const id = await root.add({ title: "Test Task", dueDate: "2000-01-01" });
+    await root.one({ id }).update({ title: "Updated Task" });
+    return state.tasks.find((task) => task.id === id).title === "Updated Task";
+  },
+  testCompleteTask: async () => {
+    const id = await root.add({ title: "Test Task", dueDate: "2000-01-01" });
+    await root.one({ id }).completed();
+    return state.tasks.find((task) => task.id === id).isCompleted;
+  },
+  testDeleteTask: async () => {
+    const id = await root.add({ title: "Test Task", dueDate: "2000-01-01" });
+    await root.one({ id }).remove();
+    return state.tasks.find((task) => task.id === id) === undefined;
+  }
 };
 
 export const Task = {
@@ -42,7 +76,7 @@ export const Task = {
     const { id } = self.$argsAt(root.one);
     const index = state.tasks.findIndex((task) => task.id === id);
     state.tasks.splice(index, 1);
-  }, 
+  },
   completed({ self, args }) {
     const { id } = self.$argsAt(root.one);
     const result = state.tasks.find((task) => task.id === id);
