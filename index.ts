@@ -24,9 +24,8 @@ export const Tests = {
     return false;
   },
   testDeleteAllTask: async () => {
-    // await root.deleteAllTasks();
-    // return state.tasks.length === 0;
-    return false;
+    await root.deleteAllTasks();
+    return state.tasks.length === 0;
   },
   testDeleteCompleted: async () => {
     await root.deleteCompleted();
