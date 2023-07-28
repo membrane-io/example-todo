@@ -4,11 +4,8 @@ An [Membrane.io](https://membrane.io/) program to manage your tasks lists.
 
 ## Usage
 
-1. Install the [Membrane VSCode Extension](https://marketplace.visualstudio.com/items?itemName=membrane.membrane).
-2. Setup on extension your [Membrane's CLI binary (mctl)](https://membrane.io/download) path.
-3. Login / Sign up with ```mctl login```.
-4. Update the program on Membrane with the VSCode Command palette `(cmd+shift+p)`\
-  ```> Membrame: Update current program```
+ - Install directly from VSCode: vscode://membrane.membrane/directory/example-todo (requires Membrane Extension).
+ - Alternatively, clone this repo in your Membrane workspace.
 
 ## Queries
 Get one of tasks
@@ -64,31 +61,3 @@ $~~~~$`mctl action "todo:deleteCompleted"`
 Delete all tasks
 
 $~~~~$`mctl action "todo:deleteAllTasks"`
-
-# Schema
-
-### Types
-```javascript
-<Root>
-    - Fields
-        one(id) -> Ref <Task>
-        page() -> Ref <TaskPage>
-    - Actions
-        add(title, dueDate) -> Int
-        deletedCompleted() -> void
-        deleteAllTasks() -> void
-<TaskPage>
-    - Fields
-        items() -> List <Task>
-        next() -> Ref <TaskPage>
-<Task>
-    - Fields
-       id -> Int
-       title -> String
-       dueDate -> String
-       isComplete -> Boolean
-    - Actions
-        update(title, dueDate) -> void
-        remove() -> void
-        completed() -> void
-```
