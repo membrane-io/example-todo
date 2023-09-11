@@ -175,10 +175,5 @@
       }
     ]
   },
-  "dependencies": {
-    "github": "github:",
-    "directory": "github:users.one(name:\"membrane-io\").repos.one(name:\"directory\")",
-    "pinecone": "pinecone:",
-    "openai": "openai:"
-  }
+  "dependencies": {}
 }

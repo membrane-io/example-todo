@@ -1,13 +1,13 @@
 // `nodes` contain any nodes you add from the graph (dependencies)
 // `root` is a reference to this program's root node
 // `state` is an object that persist across program updates. Store data here.
-import { nodes, root, state } from "membrane";
+import { root, state } from "membrane";
 
 state.tasks = state.tasks ?? [];
 state.nextId = state.nextId ?? 1;
 
 export const Root = {
-  one: ({ args: { id } }) => state.tasks.find((task) => task.id === id),
+  one: ({ id }) => state.tasks.find((task) => task.id === id),
   page: () => ({
     items: state.tasks,
     next: null, // TODO!
@@ -45,7 +45,7 @@ export const Tests = {
     const id = await root.add({ title: "Test Task", dueDate: "2000-01-01" });
     await root.one({ id }).remove();
     return state.tasks.find((task) => task.id === id) === undefined;
-  }
+  },
 };
 
 export const Task = {
@@ -63,21 +63,21 @@ export const Task = {
   // We need to figure out a way to make this automatic for lists as well. Perhaps some metadata in memconfig.json?
   //
   // For now this field is required for any type that can be returned in a list.
-  gref({ obj }) {
+  gref(_, { obj }) {
     return root.one({ id: obj.id });
   },
-  update({ self, args }) {
+  update(args, { self }) {
     const { id } = self.$argsAt(root.one);
     const result = state.tasks.find((task) => task.id === id);
     result.title = args.title ?? result.title;
     result.dueDate = args.dueDate ?? result.dueDate;
   },
-  remove({ self }) {
+  remove(_, { self }) {
     const { id } = self.$argsAt(root.one);
     const index = state.tasks.findIndex((task) => task.id === id);
     state.tasks.splice(index, 1);
   },
-  completed({ self, args }) {
+  completed(args, { self }) {
     const { id } = self.$argsAt(root.one);
     const result = state.tasks.find((task) => task.id === id);
     result.isCompleted = !result.isCompleted;
@@ -85,7 +85,7 @@ export const Task = {
   },
 };
 
-export async function add({ args }) {
+export async function add(args) {
   const id = state.nextId++;
   state.tasks.push({
     id,
